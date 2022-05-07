@@ -1,12 +1,46 @@
 const updateTasks = () => {
-  const tasks = document.querySelectorAll('.commentsList .commentsList__item .commentItem__body span p');
-  console.log('>> tasks', tasks);
+  const nodes = document.querySelectorAll('.commentsList .commentsList__item .commentItem__body span p');
+  console.log('>> nodes', nodes);
 
-  tasks.forEach((task) => {
-    task.classList.add('__sctmext__task');
-    task.addEventListener('click', () => {
-      task.classList.toggle('__sctmext__task_done');
-    })
+  if (!nodes || !nodes.length) {
+    console.log('>> no comments found');
+    return;
+  }
+
+  const trackId = document.location.pathname;
+  const storageId = `trackTasks__${trackId}`;
+  console.log('>> storageId', storageId);
+
+  let trackTasks = {};
+  chrome.storage.sync.get([storageId], (storageData = {}) => {
+    trackTasks = storageData[storageId] || {};
+    console.log('>> trackTasks', trackTasks);
+
+    nodes.forEach((node) => {
+      node.classList.add('__sctmext__task');
+      const text = node.innerText;
+      if (trackTasks[text]) {
+        node.classList.add('__sctmext__task_done');
+      }
+
+      node.addEventListener('click', (e) => {
+        if (node.classList.contains('__sctmext__task_done')) {
+          delete trackTasks[text];
+          node.classList.remove('__sctmext__task_done');
+        } else {
+          trackTasks[text] = Date.now();
+          node.classList.add('__sctmext__task_done');
+        }
+
+        const dataToSync = {
+          [storageId]: trackTasks,
+        };
+        console.log('>> dataToSync', dataToSync);
+        chrome.storage.sync.set(dataToSync, () => {
+          console.log('>> synced');
+        });
+      })
+    });
   });
 }
 
@@ -27,6 +61,3 @@ const waitForCommentList = () => {
 }
 setTimeout(waitForCommentList, CHECK_INTERVAL_MS);
 
-chrome.storage.sync.get('data', (data) => {
-  console.log('>> data', data);
-});
