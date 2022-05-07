@@ -26,3 +26,7 @@ const waitForCommentList = () => {
   }
 }
 setTimeout(waitForCommentList, CHECK_INTERVAL_MS);
+
+chrome.storage.sync.get('data', (data) => {
+  console.log('>> data', data);
+});

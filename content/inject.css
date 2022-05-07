@@ -17,8 +17,3 @@
 .__sctmext__task_done::before {
     content: '☑';
 }
-
-.__sctmext__task:hover::before {
-    color: #777777;
-}
-
