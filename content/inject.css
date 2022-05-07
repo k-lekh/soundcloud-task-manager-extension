@@ -1,0 +1,24 @@
+.__sctmext__task {
+    cursor: pointer;
+}
+
+.__sctmext__task_done {
+    text-decoration: line-through;
+}
+
+.__sctmext__task::before {
+    display: inline-block;
+    content: '☐';
+    margin-right: 7px;
+    transform: scale(1.9) translateY(-0.5px) translateX(1px);
+    transition: color 50ms ease;
+}
+
+.__sctmext__task_done::before {
+    content: '☑';
+}
+
+.__sctmext__task:hover::before {
+    color: #777777;
+}
+
