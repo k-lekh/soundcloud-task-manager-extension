@@ -55,3 +55,7 @@ html {
 .info .body ul {
   list-style: cjk-heavenly-stem;
 }
+
+.info .body ul li.last {
+  margin-bottom: 16px;
+}

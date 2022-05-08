@@ -1,12 +1,5 @@
-.__sctmext__task {
-    cursor: pointer;
-}
-
-.__sctmext__task_done {
-    text-decoration: line-through;
-}
-
 .__sctmext__task::before {
+    cursor: pointer;
     display: inline-block;
     content: '☐';
     margin-right: 7px;
@@ -14,6 +7,19 @@
     transition: color 50ms ease;
 }
 
+.__sctmext__task_done {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.__sctmext__task_done:hover {
+    opacity: 1;
+}
+
 .__sctmext__task_done::before {
     content: '☑';
 }
+
+
+
+
