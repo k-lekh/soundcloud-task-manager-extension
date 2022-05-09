@@ -1,7 +1,7 @@
 {
-  "name": "Sound Cloud Task Manager",
-  "description": "Use your comments as a task list",
-  "version": "1.1",
+  "name": "RMF: Sound Cloud Task Manager",
+  "description": "Release Music Framework: use your comments as a task list",
+  "version": "1.2",
   "manifest_version": 3,
   "background": {
     "service_worker": "background/service_worker.js"
@@ -18,7 +18,6 @@
     "16": "/images/_16.png",
     "128": "/images/_128.png"
   },
-  "options_page": "options/options.html",
   "content_scripts": [
     {
       "matches": ["https://soundcloud.com/*/*"],

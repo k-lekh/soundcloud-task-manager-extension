@@ -3,8 +3,10 @@ html {
   --color-text: #eee;
   --color-dark: #282c34;
   --color-sc: #FF5500;
+  --color-sc-dark-grey: #999;
   --opacity-fade: 0.6;
   background-color: var(--color-dark);
+  font-family: sans-serif;
 }
 
 .info {
@@ -13,12 +15,13 @@ html {
   color: var(--color-text);
   font-size: 14px;
   text-align: center;
+  line-height: 130%;
 }
 
 .info a {
-  color: var(--color-text);
+  color: var(--color-sc);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-text);
+  border-bottom: 1px solid currentColor;
 }
 .info a:hover {
   border-bottom-color: transparent;
@@ -30,9 +33,12 @@ html {
   border-width: 2px;
   border-style: dashed;
   text-align: center;
-  font-size: 18px;
-  line-height: 120%;
+  font-size: 17px;
   font-weight: 300;
+}
+
+.info .header .line {
+  margin-bottom: 4px;
 }
 
 .info header b {
@@ -44,11 +50,23 @@ html {
   border-top: 2px dashed var(--color-sc);
 }
 
+.info .footer a {
+  color: var(--color-text);
+}
+
+.info .footer .version {
+  text-transform: lowercase;
+  right: 8px;
+  bottom: 4px;
+  position: absolute;
+  font-size: 60%;
+  opacity: 0.5;
+}
+
 .info .body {
   padding: 16px;
   font-size: 16px;
   text-align: left;
-  line-height: 120%;
   font-weight: 300;
 }
 
@@ -56,6 +74,15 @@ html {
   list-style: cjk-heavenly-stem;
 }
 
+.info .body ul li {
+  margin-bottom: 4px;
+}
+
 .info .body ul li.last {
   margin-bottom: 16px;
+}
+
+.info a.uploadButton {
+  display: inline;
+  color: var(--color-sc);
 }

@@ -1,4 +1,73 @@
+// [ ] use redux
+// [ ] use typescript
+
+const prefix = '__sctmext__';
+
+const syncSet = ({trackTasks}) => {
+  return;
+
+  const dataToSync = {
+    [storageId]: trackTasks,
+  };
+  console.log('>> dataToSync', dataToSync);
+  chrome.storage.sync.set(dataToSync, () => {
+    console.log('>> synced');
+  });
+}
+
+const setFocusedNode = ({nodes, node, trackTasks}) => {
+  nodes.forEach((node) => node.classList.remove(`${prefix}item_focused`));
+  if (node) {
+    node.classList.add(`${prefix}task_focused`);
+    syncSet({trackTasks, focusedTrack: node.innerText});
+  } else {
+    syncSet({trackTasks, focusedTrack: undefined});
+  }
+}
+
+const initNode = ({nodes, node, trackTasks, focusedTrack}) => {
+  node.classList.add(`${prefix}task`);
+  const text = node.innerText;
+  if (trackTasks[text]) {
+    node.classList.add(`${prefix}task_done`);
+  }
+  if (text === focusedTrack) {
+    node.closest('.commentItem').classList.add(`${prefix}task_focused`);
+  }
+
+  // const focusButton = document.createElement('button');
+  // focusButton.innerText = '⊙ Focus on this'
+  // focusButton.classList.add(`${prefix}task__focusButton`);
+  // focusButton.onclick = (e) => {
+  //   e.preventDefault();
+  //   const activeClass = `${prefix}task__focusButton_active`;
+  //   const isActive = e.target.classList.contains(activeClass);
+  //   if (isActive) {
+  //     e.target.classList.remove(activeClass);
+  //     setFocusedNode({nodes, node: undefined, trackTasks});
+  //   } else {
+  //     e.target.classList.add(activeClass);
+  //     setFocusedNode({nodes, node, trackTasks});
+  //   }
+  // }
+  // focusButton.classList.add(`${prefix}task__focusButton`);
+  // node.appendChild(focusButton);
+
+  node.addEventListener('click', (e) => {
+    if (node.classList.contains(`${prefix}task_done`)) {
+      delete trackTasks[text];
+      node.classList.remove(`${prefix}task_done`);
+    } else {
+      trackTasks[text] = Date.now();
+      node.classList.add(`${prefix}task_done`);
+    }
+
+    syncSet({trackTasks});
+  })
+};
+
 const updateTasks = () => {
+  // [ ] add task "listen this track and write comments right here"
   const nodes = document.querySelectorAll('.commentsList .commentsList__item .commentItem__body span p');
   console.log('>> nodes', nodes);
 
@@ -16,31 +85,7 @@ const updateTasks = () => {
     trackTasks = storageData[storageId] || {};
     console.log('>> trackTasks', trackTasks);
 
-    nodes.forEach((node) => {
-      node.classList.add('__sctmext__task');
-      const text = node.innerText;
-      if (trackTasks[text]) {
-        node.classList.add('__sctmext__task_done');
-      }
-
-      node.addEventListener('click', (e) => {
-        if (node.classList.contains('__sctmext__task_done')) {
-          delete trackTasks[text];
-          node.classList.remove('__sctmext__task_done');
-        } else {
-          trackTasks[text] = Date.now();
-          node.classList.add('__sctmext__task_done');
-        }
-
-        const dataToSync = {
-          [storageId]: trackTasks,
-        };
-        console.log('>> dataToSync', dataToSync);
-        chrome.storage.sync.set(dataToSync, () => {
-          console.log('>> synced');
-        });
-      })
-    });
+    nodes.forEach((node) => initNode({nodes, node, trackTasks}));
   });
 }
 
