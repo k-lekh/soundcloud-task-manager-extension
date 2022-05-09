@@ -24,17 +24,19 @@ code {
 
 .main {
     display: flex;
-    flex-direction: column;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    align-content: center;
+    justify-content: center;
 }
 
 .info {
-    max-width: 600px;
-    margin: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 620px;
+    margin: 22px 22px 0 22px;
     min-width: 300px;
     min-height: 400px;
     color: var(--color-text);
@@ -79,20 +81,12 @@ code {
     color: var(--color-text);
 }
 
-.info .footer .version {
-    text-transform: lowercase;
-    right: 8px;
-    bottom: 4px;
-    position: absolute;
-    font-size: 60%;
-    opacity: 0.5;
-}
-
 .info .inner {
     padding: 16px;
     font-size: 16px;
     text-align: left;
     font-weight: 300;
+    flex: 1 0;
 }
 
 .info .inner ul {
