@@ -1,12 +1,22 @@
 {
   "name": "RMF: Sound Cloud Task Manager",
-  "description": "Release Music Framework: use your comments as a task list",
+  "description": "Release Music Framework: handle your comments as a task list",
   "version": "1.2",
   "manifest_version": 3,
+  "permissions": [
+    "storage", "activeTab", "scripting"
+  ],
   "background": {
-    "service_worker": "background/service_worker.js"
+    "service_worker": "background/serviceWorker.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://soundcloud.com/*/*"],
+      "css": ["contentScripts/inject.css"],
+      "js": ["contentScripts/inject.js"],
+      "run_at": "document_end"
+    }
+  ],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -17,13 +27,5 @@
   "icons": {
     "16": "/images/_16.png",
     "128": "/images/_128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": ["https://soundcloud.com/*/*"],
-      "css": ["content/inject.css"],
-      "js": ["content/inject.js"],
-      "run_at": "document_end"
-    }
-  ]
+  }
 }
