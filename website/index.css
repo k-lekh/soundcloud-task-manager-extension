@@ -80,10 +80,6 @@ code {
     border-top: 2px dashed var(--color-sc);
 }
 
-.info .footer a {
-    color: var(--color-text);
-}
-
 .info .inner {
     padding: 16px;
     font-size: 16px;
