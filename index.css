@@ -105,3 +105,30 @@ code {
     display: inline;
     color: var(--color-sc);
 }
+
+.info .actionBlock {
+    margin: 32px 8px;
+    text-align: center;
+}
+
+.info .actionBlock a {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: var(--color-sc);
+    border: 2px solid var(--color-sc);
+    color: var(--color-text);
+}
+
+.info .actionBlock a:hover {
+    border-color: white;
+}
+
+.info .actionBlock .subtitle {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--color-text);
+    opacity: 0.8;
+}
