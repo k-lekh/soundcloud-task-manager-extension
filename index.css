@@ -24,12 +24,11 @@ code {
 
 .main {
     display: flex;
-    flex-direction: column;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    align-content: center;
+    justify-content: center;
 }
 
 .info {
