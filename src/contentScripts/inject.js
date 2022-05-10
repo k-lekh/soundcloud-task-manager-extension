@@ -1,13 +1,15 @@
+import debounce from 'lodash.debounce';
+import md5 from 'md5';
+
 const STORAGE_TRACKS = "tracks";
 const PREFIX = '__sctmext__';
-const isDev = false;
-const log = isDev ? console.log.bind(console) : () => undefined;
+const isDebug = false;
+const log = isDebug ? console.log.bind(console) : () => undefined;
 
 const tasksToInit = {};
 
 const getTrackId = () => document.location.pathname;
 
-// TODO migration from 1.1
 async function storageGetTrack(trackId) {
   return new Promise((resolve) => {
     chrome.storage.sync.get([STORAGE_TRACKS], (storageData = {}) => {
@@ -31,13 +33,12 @@ async function storageUpdateTrack(trackId, trackData) {
   });
 }
 
-const observer = new MutationObserver(handleMutation);
+const observer = new MutationObserver(debounce(handleMutation, 100));
 observer.observe(document.body, {
   childList: true,
   subtree: true
 });
 
-// TODO debounce
 async function handleMutation() {
   const nodes = document.querySelectorAll(`.commentsList__item:not(.${PREFIX}task)`);
   if (!nodes?.length) {
@@ -59,7 +60,7 @@ function initTask(node, {trackId, trackData = {}}) {
     return;
   }
 
-  const taskId = [userName, timeLink, commentText].join('|'); // TODO use hash
+  const taskId = md5([userName, timeLink, commentText].join('|'));
   if (tasksToInit[trackId]?.[taskId]) {
     return;
   }
@@ -85,7 +86,7 @@ function initTask(node, {trackId, trackData = {}}) {
   focusButton.onclick = handleClickFocus;
   node.querySelector('.commentItem__controls')?.prepend(focusButton);
 
-  const { done = {}, focused = {}, ignored = {} } = trackData;
+  const {done = {}, focused = {}, ignored = {}} = trackData;
   if (done[taskId]) {
     node.classList.add(`${PREFIX}task_done`);
   }
