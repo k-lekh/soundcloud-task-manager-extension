@@ -7,6 +7,7 @@ const tasksToInit = {};
 
 const getTrackId = () => document.location.pathname;
 
+// TODO migration from 1.1
 async function storageGetTrack(trackId) {
   return new Promise((resolve) => {
     chrome.storage.sync.get([STORAGE_TRACKS], (storageData = {}) => {
