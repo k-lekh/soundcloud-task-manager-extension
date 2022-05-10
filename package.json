@@ -4,7 +4,7 @@
     "http-server": "^14.1.0"
   },
   "scripts": {
-    "deploy:website": "gh-pages -d website",
+    "deploy": "gh-pages -d website",
     "start": "http-server website"
   }
 }
