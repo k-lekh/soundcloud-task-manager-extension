@@ -126,3 +126,8 @@ code {
     color: var(--color-text);
     opacity: 0.8;
 }
+
+.info .media video {
+    max-width: 100%;
+    border-radius: 5px;
+}
