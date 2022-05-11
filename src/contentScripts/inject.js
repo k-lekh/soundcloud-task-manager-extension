@@ -3,7 +3,7 @@ import md5 from 'md5';
 
 const STORAGE_TRACKS = "tracks";
 const PREFIX = '__sctmext__';
-const isDebug = false;
+const isDebug = process.env.DEBUG;
 const log = isDebug ? console.log.bind(console) : () => undefined;
 
 const tasksToInit = {};

@@ -2,10 +2,9 @@
   "scripts": {
     "deploy": "gh-pages -d website",
     "start": "http-server website",
-    "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch",
+    "build": "webpack --mode=production --node-env=production && rm ./package/contentScripts/inject.js.LICENSE.txt",
+    "build:dev": "DEBUG=true webpack --mode=production --node-env=production",
+    "watch": "DEBUG=true webpack --mode=production --node-env=production --watch",
     "test": "jest"
   },
   "dependencies": {

@@ -1,1 +1,0 @@
-console.log('RMF:v1.2');

@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
@@ -7,7 +8,12 @@ const config = {
     filename: 'inject.js',
     path: path.resolve(__dirname, './package/contentScripts/'),
   },
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
+    })
+  ],
   module: {
     rules: [
       {
@@ -30,6 +36,9 @@ const config = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  optimization: {
+    minimize: isProduction,
+  }
 };
 
 module.exports = () => {
