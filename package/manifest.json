@@ -1,10 +1,10 @@
 {
-  "name": "Sound Cloud Task Manager (RMF)",
-  "description": "Release Music Framework: handle your comments as a task list",
-  "version": "1.4",
+  "name": "SoundCloud Task Manager",
+  "description": "Use comments as a task list",
+  "version": "1.6",
   "manifest_version": 3,
   "permissions": [
-    "storage", "activeTab", "scripting"
+    "storage"
   ],
   "content_scripts": [
     {

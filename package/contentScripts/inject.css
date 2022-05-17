@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.__sctmext__task_ignored .commentItem__body {
+    cursor: default;
+}
+
 .__sctmext__task .commentItem__body p::before {
     display: inline-block;
     content: '☐';
