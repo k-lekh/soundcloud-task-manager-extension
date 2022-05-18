@@ -34,9 +34,9 @@ function initTask(node, {trackId, trackData = {}}) {
 
   tasksToInit[trackId] = tasksToInit[trackId] || {};
   tasksToInit[trackId][taskId] = true;
+  node.classList.add(`${PREFIX}task`);
   log('>> initTask', {trackId, taskId, userName, timeLink, commentText, node});
 
-  node.classList.add(`${PREFIX}task`);
   node.dataset[`${PREFIX}trackId`] = trackId;
   node.dataset[`${PREFIX}taskId`] = taskId;
   node.querySelector('.commentItem__body')?.addEventListener('click', handleClickDone);
@@ -63,4 +63,6 @@ function initTask(node, {trackId, trackData = {}}) {
   if (ignored[taskId]) {
     node.classList.add(`${PREFIX}task_ignored`);
   }
+
+  // TODO mutation observer on node to re-init buttons if they are gone
 }
