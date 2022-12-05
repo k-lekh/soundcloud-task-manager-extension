@@ -1,0 +1,68 @@
+.__sctmext__task {
+    --color-light: #50535a;
+    --color-text: #eee;
+    --color-dark: #282c34;
+    --color-sc: #FF5500;
+    --color-sc-dark-grey: #999;
+    --opacity-fade: 0.6;
+}
+
+/* task content */
+.__sctmext__task .commentItem__body {
+    cursor: pointer;
+}
+
+.__sctmext__task_ignored .commentItem__body {
+    cursor: default;
+}
+
+.__sctmext__task .commentItem__body p::before {
+    display: inline-block;
+    content: '☐';
+    margin-right: 7px;
+    transform: scale(1.9) translateY(-0.5px) translateX(1px);
+    transition: color 50ms ease;
+}
+
+/* done */
+.__sctmext__task_done .commentItem__body p {
+    text-decoration: line-through;
+    opacity: var(--opacity-fade);
+}
+
+.__sctmext__task_done:hover .commentItem__body p {
+    opacity: 1;
+}
+
+.__sctmext__task_done .commentItem__body p::before {
+    content: '☑';
+}
+
+/* ignored */
+.__sctmext__task_ignored .commentItem__body p {
+    opacity: var(--opacity-fade);
+}
+
+.__sctmext__task_ignored .commentItem__body p::before {
+    display: none;
+}
+
+/* focused */
+.__sctmext__task_focused .commentItem__body p {
+    color: var(--color-sc);
+    opacity: 1;
+}
+
+/* control buttons */
+.__sctmext__task .__sctmext__task__button + .__sctmext__task__button {
+    margin-left: 3px;
+}
+
+.__sctmext__task_focused .__sctmext__task__button_focus {
+    color: var(--color-text) !important;
+    background-color: var(--color-sc);
+}
+
+.__sctmext__task_ignored .__sctmext__task__button_ignore {
+    background-color: #e5e5e5;
+}
