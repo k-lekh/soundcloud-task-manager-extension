@@ -1,4 +1,4 @@
-const STORAGE_TRACKS = "tracks";
+import { STORAGE_TRACKS } from './constants';
 
 export async function storageGetTrack(trackId) {
   return new Promise((resolve) => {

@@ -4,11 +4,7 @@ import { CSS_PREFIX as PREFIX } from './utils/constants';
 import {initTrackTasks} from "./pages/trackTasks";
 import {initTracksList} from "./pages/tracksList";
 
-const observer = new MutationObserver(debounce(handleBodyMutation, 200));
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+import { migrations } from './utils/migrations';
 
 async function handleBodyMutation() {
   const trackTasksNodes = document.querySelectorAll(`.commentsList__item:not(.${PREFIX}task)`);
@@ -19,3 +15,13 @@ async function handleBodyMutation() {
 
   log('>> handleMutation', { trackTasksNodes, trackListNodes });
 }
+
+(async () => {
+  await migrations();
+
+  const observer = new MutationObserver(debounce(handleBodyMutation, 200));
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
