@@ -1,10 +1,11 @@
 {
   "name": "SoundCloud Task Manager",
-  "description": "Use comments as a task list",
+  "description": "Use comments as TODOs",
   "version": "1.7",
   "manifest_version": 3,
   "permissions": [
-    "storage"
+    "storage",
+    "unlimitedStorage"
   ],
   "content_scripts": [
     {
