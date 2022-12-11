@@ -10,8 +10,8 @@
 html {
   background-color: var(--color-dark);
   font-family: sans-serif;
-  min-height: 450px;
-  width: 662px;
+  min-height: 350px;
+  width: 490px;
 }
 
 body {
@@ -38,9 +38,7 @@ code {
   flex-direction: column;
   justify-content: space-between;
   max-width: 620px;
-  margin: 22px 22px 0 22px;
-  min-width: 300px;
-  min-height: 400px;
+  margin: 0 22px;
   color: var(--color-text);
   font-size: 14px;
   text-align: center;
@@ -57,10 +55,11 @@ a:hover {
 }
 
 .header {
+  margin-top: 4px;
   padding: 16px;
   border-color: var(--color-sc);
-  border-width: 2px;
-  border-style: dashed;
+  border-width: 1px;
+  border-bottom-style: dashed;
   text-align: center;
   font-size: 17px;
   font-weight: 300;
@@ -83,7 +82,7 @@ header b {
 }
 
 .withBorderTop {
-  border-top: 2px dashed var(--color-sc);
+  border-top: 1px dashed var(--color-sc);
 }
 
 .withBorderBottom {
@@ -95,13 +94,12 @@ header b {
   padding: 16px 0;
   font-size: 16px;
   text-align: left;
-  flex: 1 0;
 }
 
 .inner ul {
   font-weight: 300;
   margin: 0 16px 8px;
-  list-style: cjk-heavenly-stem;
+  list-style: disc;
 }
 
 .inner ul li {
